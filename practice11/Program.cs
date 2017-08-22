@@ -10,8 +10,8 @@ namespace practice11
     /// Цезарь 
     /// Шифрование, расшифрование
     /// На вход:
-    /// 1. Cтрока с русскими строчными буквами (33 штуки от 'а' до 'я')
-    /// 2. Натуральное число - сдвиг строки (от 0 до бесконечности, с период = 33)
+    /// 1. Cтрока с русскими строчными буквами (32 штуки от 'а' до 'я' нет ё)
+    /// 2. Натуральное число - сдвиг строки (от 0 до бесконечности, с период = 32)
     /// 3. А - шифровать, Б - расшифровать
     /// 
     /// На выходе:
@@ -27,6 +27,8 @@ namespace practice11
         static public string CaesarCode(string input, int n)
         {
             char temp;
+            n = n % 32;
+
             string result = "";
             for (int i = 0; i < input.Length; i++)
             {
@@ -35,12 +37,11 @@ namespace practice11
                     result = result + temp;
                 else
                 {
-                    int code = temp - 'а' + 1 + n;
+                    int code = temp - 'а' + n;
 
-                    if (code > 33)
-                        code = code % 33 + 1;
+                    code = code % 32;
                     
-                    result = result + char.ConvertFromUtf32(code + 'а' - 1);
+                    result = result + char.ConvertFromUtf32(code + 'а');
                 }
             }
 
@@ -52,7 +53,7 @@ namespace practice11
             int n = int.Parse(Console.ReadLine());
             temp = CaesarCode(temp, n);
             Console.WriteLine(temp);
-            temp = CaesarCode(temp, 33 - n);
+            temp = CaesarCode(temp, 32 - n);
             Console.WriteLine(temp);
         }
     }
