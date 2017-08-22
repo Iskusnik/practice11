@@ -24,8 +24,36 @@ namespace practice11
     /// </summary>
     class Program
     {
+        static public string CaesarCode(string input, int n)
+        {
+            char temp;
+            string result = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                temp = input[i];
+                if (temp < 'а' || temp > 'я' )
+                    result = result + temp;
+                else
+                {
+                    int code = temp - 'а' + 1 + n;
+
+                    if (code > 33)
+                        code = code % 33 + 1;
+                    
+                    result = result + char.ConvertFromUtf32(code + 'а' - 1);
+                }
+            }
+
+            return result;
+        }
         static void Main(string[] args)
         {
+            string temp = Console.ReadLine();
+            int n = int.Parse(Console.ReadLine());
+            temp = CaesarCode(temp, n);
+            Console.WriteLine(temp);
+            temp = CaesarCode(temp, 33 - n);
+            Console.WriteLine(temp);
         }
     }
 }
