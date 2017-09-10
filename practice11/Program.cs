@@ -49,10 +49,22 @@ namespace practice11
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Символов всего 32, так как нет 'ё'");
+            Console.WriteLine("В сообщениях используйте только маленькие буквы русского алфавита");
+
+            Console.WriteLine("Введите сообщение для шифрофки");
             string temp = Console.ReadLine();
+            Console.WriteLine("Введите число символов для сдвига шифровки");
             int n = int.Parse(Console.ReadLine());
             temp = CaesarCode(temp, n);
             Console.WriteLine(temp);
+
+            Console.WriteLine("Введите сообщение для расшифрофки");
+            temp = Console.ReadLine();
+
+            Console.WriteLine("Введите число символов для сдвига расшифрофки");
+            n = int.Parse(Console.ReadLine());
+
             temp = CaesarCode(temp, 32 - n);
             Console.WriteLine(temp);
         }
